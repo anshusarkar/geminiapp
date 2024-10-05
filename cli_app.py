@@ -1,8 +1,12 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
 
-# Replace with your actual API key and the endpoint
-api_key = 'AIzaSyArcW7CQtSDhnFJiMkDZh7wxPM-Yew9Dl8'
+
+load_dotenv()
+
+api_key = os.getenv('API_KEY')
 # city = 'London'
 url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}'
 
