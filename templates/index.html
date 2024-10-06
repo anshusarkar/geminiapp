@@ -3,29 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geminiapp *</title>
-</head>
-<body>
-    <h1>Geminiapp *</h1>
+    <title>Geminiapp*</title>
     <style>
-        /* CSS to center the h1 */
+        /* CSS to center the h1 and form */
         h1 {
             text-align: center;
             font-size: 3em;
         }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+            opacity: 0; /* Start hidden for animation */
+            transition: opacity 3s ease-in-out; /* Transition for fade-in effect */
+        }
+        .show {
+            opacity: 1; /* Fully visible when the class is added */
+        }
+        input[type="text"] {
+            border: 2px solid #ccc; /* Border color */
+            border-radius: 20px; /* Makes the input pill-shaped */
+            padding: 5px 10px; /* Adds padding for better spacing */
+            font-size: 1em; /* Font size */
+            transition: border-color 0.3s ease; /* Transition for border color on focus */
+        }
+        input[type="text"]:focus {
+            border-color: #00aeff; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+        input[type="submit"] {
+            background-color: #ffffff; /* Button background color */
+            color: rgb(3, 3, 3); /* Text color */
+            border: thick black; /* Remove default border */
+            border-radius: 25px; /* Makes the button pill-shaped */
+            padding: 5px 8px; /* Padding for spacing */
+            font-size: 1em; /* Font size */
+            cursor: pointer; /* Change cursor on hover */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for hover effect */
+        }
+        input[type="submit"]:hover {
+            background-color: #029ece; /* Darker background on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+            color: #ffffff;
+            border: thick #ffffff;
+        }
+
     </style>
+</head>
+<body>
+    <h1>Geminiapp *</h1>
     <form action="/submit" method="POST">
-        <label for="querry"></label>
-        <input type="text" id="querry" name="querry" placeholder="Type your query here" >
+        <label for="query"></label>
+        <input type="text" id="query" name="query" placeholder="Type your main query here" value="{{ query }}">
         <input type="submit" value="Submit">
-
-        <style>
-            /* CSS to center the h1 */
-            form {
-                text-align: center;
-            }
-        </style>
-
     </form>
+
+    {% if result %}
+    <div class="result" id="result">
+        <p>Result for Main Query: {{ result }}</p>
+    </div>
+    {% endif %}
+
+    <script>
+        // Add the show class to the result div after the page loads
+        window.onload = function() {
+            var resultDiv = document.getElementById('result');
+            if (resultDiv) {
+                resultDiv.classList.add('show'); // Trigger animation by adding class
+            }
+        };
+    </script>
 </body>
 </html>
