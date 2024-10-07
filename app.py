@@ -2,6 +2,8 @@ import requests
 import json
 import os
 from flask import Flask, request, render_template
+import pyttsx3
+
 
 app = Flask(__name__)
 
